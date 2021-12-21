@@ -1,16 +1,31 @@
 import sys
-input = sys.stdin.readline
 from collections import deque
-
+input = sys.stdin.readline
 n = int(input())
-stack = deque()
-ansStack = []
+
+ansList = []
+
 for _ in range(n):
-    a = int(input())
-    stack.appendleft(a)
+    x = int(input())
+    ansList.append(x)
 
+tempList = []
+result = []
+num = 1
+flag = 0
 
-for i in range(len(stack) - 1, 0, -1):
-    if(stack[i] > stack[i - 1]):
-        ansStack.append(stack.popleft())
-        print(ansStack)
+for i in ansList:
+    while num <= i:
+        tempList.append(num)
+        result.append('+')
+        num += 1
+    
+    if tempList[-1] == i :
+        tempList.pop()
+        result.append('-')
+  
+if len(tempList) == 0:
+    print('\n'.join(result))
+else:
+    print("NO")
+
