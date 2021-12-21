@@ -3,36 +3,28 @@ input = sys.stdin.readline
 from collections import deque
 
 s = input().rstrip()
-stack = [i for i in s]
+stack = deque([i for i in s])
+stack2 = deque()
 
 n = int(input())
-current = len(stack)
 
 for _ in range(n):
     cal = input().split()
 
     if cal[0] == 'P':
-        stack.insert(current, cal[1])
-        current = current + 1
+        stack.append(cal[1])
         
-    elif cal[0] == 'L':
-        if(current == 0):
-            continue
-        else:
-            current = current - 1
+    elif cal[0] == 'L' and len(stack) != 0:
+        x = stack.pop()
+        stack2.appendleft(x)
 
-    elif cal[0] == 'B':
-        if(current == 0):
-            continue
-        else:
-            del(stack[current - 1])
-            # current = current - 1 
-        
+    elif cal[0] == 'B' and len(stack) != 0:
+        x = stack.pop()
 
-    elif cal[0] == 'D':
-        if(current == len(stack)):
-            continue
-        else:
-            current = current + 1
 
-print(''.join(stack))
+    elif cal[0] == 'D' and len(stack2) != 0:
+        x = stack2.popleft()
+        stack.append(x)
+
+stack3 = stack + stack2
+print(''.join(stack3))
