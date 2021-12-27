@@ -38,3 +38,7 @@ for _ in range(t):
 
     ans = stack + stack2
     print(''.join(ans))
+
+
+
+

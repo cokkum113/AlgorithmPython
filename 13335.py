@@ -13,7 +13,6 @@ cnt = 0
 
 while numList:
     stack.popleft()
-
     
     if(sum(stack) + numList[0] <= l):
         y = numList.popleft()
@@ -23,7 +22,4 @@ while numList:
     
     cnt += 1
 
-    
-    
-    
 print(cnt + w)
