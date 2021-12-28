@@ -25,10 +25,3 @@ def dfs(x, visit):
 
 dfs(1, visit)
 print(cnt - 1)
-
-# cnt = 0
-# dfs(1, visit)
-# for i in range(n):
-#     if visit[i] == True:
-#         cnt += 1
-# print(cnt - 1)
