@@ -14,13 +14,13 @@ def bfs(sp, dp):
         status = que.popleft()
         if status[0] == dp:
             return status[1]
-        if 0 <= status[0] + 1 <= 1000000 and visit[status[0] + 1] == False:
+        if status[0] + 1 <= 1000000 and visit[status[0] + 1] == False:
             que.append([status[0] + 1, status[1] + 1])
             visit[status[0] + 1] = True
-        if 0 <= status[0] - 1 <= 1000000 and visit[status[0] - 1] == False:
+        if 0 <= status[0] - 1 and visit[status[0] - 1] == False:
             que.append([status[0] - 1, status[1] + 1])
             visit[status[0] - 1] = True
-        if 0 <= status[0] * 2 <= 1000000 and visit[status[0] * 2] == False:
+        if status[0] * 2 <= 1000000 and visit[status[0] * 2] == False:
             que.append([status[0] * 2, status[1] + 1])
             visit[status[0] * 2] = True
     
