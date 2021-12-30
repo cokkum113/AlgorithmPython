@@ -1,28 +1,24 @@
-# from collections import deque
-# import sys
-# input = sys.stdin.readline
-# from collections import deque
+import sys
+input = sys.stdin.readline
 
-# n = int(input())
-# s = input().split()
+n = int(input())
+s = input().split()
 
-# nums = [int(i) for i in s]
+nums = [int(i) for i in s]
 
-# ans = [0] * n
-# ans[0] = 0
+ans = [0] * n
+ans[0] = 0
 
-# stack = deque()
+stack = []
 
-# # for i in range(len(nums) - 1, -1, -1):
-# #     if(nums[i] > nums[i -1]):
-# #         stack.append(nums[i])
-# #         if (len(stack) != 0 and )
-# #     elif(nums[i] < nums[i - 1]):
-# #         ans.append(i)
+for i in range(n):
+    while stack:
+        if (stack[-1][1] > nums[i]):
+            ans[i] = stack[-1][0] + 1
+            break
+        else:
+            stack.pop()
+    stack.append([i, nums[i]])
 
-
-# x = nums.pop()
-# for i in range(len(nums) - 2, -1, -1):
-#     if x 
-
-# #print( n - i 를 인덱스로 가지는 것을 뽑으면 될거같다. )
+for a in ans:
+    print(a, end=' ')

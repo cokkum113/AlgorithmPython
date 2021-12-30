@@ -10,15 +10,24 @@ for i in range(n):
 
 home.sort()
 
+lo = 1
+hi = home[-1] - home[0]
+
 offset = 0
-offlist = []
-for i in range(1, n):
-    offset = home[i] - home[i - 1]
-    offlist.append(offset)
+cnt = 0
+ans = 0
+while(hi >= lo):
+    mid = (lo + hi) // 2
+    for i in range(len(home)):
+        if offset <= home[i]:
+            offset = home[i] + mid
+            cnt += 1
+        
+    if cnt >= c:
+        lo = mid + 1
+        ans = mid
 
-maxi = 0
-for i in range(1, n - 1):
-    a = offlist[i] - offlist[i - 1]
-    maxi = max(a, maxi)
+    else:
+        hi = mid - 1
 
-print(maxi)
+print(ans)
