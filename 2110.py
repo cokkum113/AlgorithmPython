@@ -10,24 +10,29 @@ for i in range(n):
 
 home.sort()
 
-lo = 1
-hi = home[-1] - home[0]
+lo = 0
+hi = home[-1]
 
-offset = 0
-cnt = 0
-ans = 0
-while(hi >= lo):
-    mid = (lo + hi) // 2
-    for i in range(len(home)):
-        if offset <= home[i]:
-            offset = home[i] + mid
+
+def possible(value):
+    prev = home[0]
+    cnt = 1
+    for i in home:
+        if prev + value <= i:
+            prev = i
             cnt += 1
-        
+
     if cnt >= c:
+        return True
+    return False
+
+while(hi >= lo):
+    mid = (hi + lo) // 2
+    if possible(mid):
         lo = mid + 1
         ans = mid
-
     else:
         hi = mid - 1
-
+        
+        
 print(ans)
