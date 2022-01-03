@@ -13,8 +13,8 @@ cnt = 0
 maximum = 0
 day = 0
 
-
 while hi != n - 1:
+    # if (hi + 1) % x == 0:
     if day == x:
         day = 0
         if total > maximum:
