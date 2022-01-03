@@ -6,7 +6,7 @@ clist = list(map(int, input().split()))
 
 clist.sort()
 ans = []
-mini = 1000000001
+mini = 10000000001
 
 lo = 0
 hi = n - 1
