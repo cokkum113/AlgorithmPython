@@ -15,9 +15,9 @@ def topdown(n):
         return dp[n] 
 
     dp[n] = topdown(n - 1) + topdown(n - 2)
-    return dp[n]
+    return dp[n]%10007
 
-print(topdown(n)%10007)
+print(topdown(n))
 
 
 
