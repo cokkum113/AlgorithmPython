@@ -47,7 +47,7 @@ for i in range(s):
                 break
 
     elif emptyframe(frame):
-        frame[0] = [nums[i], 1, order + 1]
+        frame[0] = [nums[i], 1, order]
 
     elif fullframe(frame):
         # print(frame)
@@ -70,8 +70,9 @@ for i in range(s):
                 
                 for u in range(len(frame)):
                     if frame[u][2] == mini:
-                        changeIndex = u
-                        break
+                        if frame[u][1] == changevalue:
+                            changeIndex = u
+                            
 
                 frame[changeIndex] = [nums[i], 1, order]
                 break
