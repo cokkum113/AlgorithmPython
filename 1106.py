@@ -14,9 +14,10 @@ cntlist = sorted(cntlist, key = lambda x : x[1])
 cntlist.reverse()
 
 dp = []
+#값을 저장
 
-#값들을 추가하는 식.
-#사람수 많은 수대로
+# 값들을 추가하는 식.
+# 사람수 많은 수대로
 person = 0
 money = 0
 remain = 0
@@ -29,7 +30,3 @@ for i in range(n - 1):
         if c >= (person * cntlist[i][1] + remain):
             print(person * cntlist[i][1] + remain)
             break
-
-
-
-
