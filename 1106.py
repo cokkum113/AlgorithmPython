@@ -21,12 +21,8 @@ dp = []
 person = 0
 money = 0
 remain = 0
-for i in range(n - 1):
-    person  = c//cntlist[i][1]
-    money = person * cntlist[i][0]
 
-    remain = c - (cntlist[i][1] * person)
-    for j in range(1, n):
-        if c >= (person * cntlist[i][1] + remain):
-            print(person * cntlist[i][1] + remain)
-            break
+#값을 저장해두고 그 개수가 빌때마다 원래 값을 더해주면 되나?
+#dp에 최대값부터 저장하고 모자르면 가져오고
+#그런식으로
+for i in range(n - 1):
