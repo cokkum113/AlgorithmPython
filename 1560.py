@@ -18,7 +18,6 @@ def p(st):
         ans.append(i + 1)
         p(st + 1)
         ans.pop()
-        # visit[i] = False
         for j in range(i + 1, n):
             visit[j] = False
 
