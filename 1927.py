@@ -30,13 +30,13 @@ def pop():
     parent = 1
     child = 2
 
-    if child + 1 < heap_size and tree[child] > tree[child + 1]:
+    if child + 1 <= heap_size and tree[child] > tree[child + 1]:
         child = child + 1
     while child <= heap_size and tree[parent] > tree[child]:
         tree[parent], tree[child] = tree[child], tree[parent]
         parent = child
         child = parent * 2
-        if child + 1 < heap_size and tree[child] > tree[child + 1]:
+        if child + 1 <= heap_size and tree[child] > tree[child + 1]:
             child = child + 1
     return res
 
