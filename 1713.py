@@ -3,42 +3,53 @@ input = sys.stdin.readline
 
 n = int(input())
 s = int(input())
-
 nums = list(map(int, input().split()))
 
 frame = []
+# frame.append([nums[0], 1, 0])
 
-
-def checkinside(frame, recommend):
+#선체크해야함
+def inside_same_check(x):
     for i in frame:
-        if i[0] == recommend:
+        if x == i[0]:
             return True
     return False
 
-for index, recommendman in enumerate(nums):
-    if checkinside(frame, recommendman):
-        for i, j in enumerate(frame):
-            if j[0] == recommendman:
+# def push_fullframe(x):
+#     if inside_same_check:
+#         for i in range(len(frame)):
+#             if x == frame[i][0]:
+#                 frame[i] = [x, frame[i][1] + 1, frame[i][2]]
+#     else:
+#         for i in range(len(nums)):
+#             frame[0] = [x, 1, i]
+
+# def push_frame(x):
+#     if inside_same_check:
+#         for i in range(len(frame)):
+#             if x == frame[i][0]:
+#                 frame[i] = [x, frame[i][1] + 1, frame[i][2]]
+#     else:
+#         for i in range(len(nums)):
+#             frame.append([x, 1, i])
+
+for index, value in enumerate(nums):
+    frame.sort(key=lambda x : (x[1], x[2]))
+    if inside_same_check(value):
+        for i in range(len(frame)):
+            if frame[i][0] == value:
                 frame[i][1] += 1
                 break
-
-    
     else:
         if len(frame) < n:
-            frame.append([recommendman, 1, index])
+            frame.append([value, 1, index])
         elif len(frame) == n:
-            frame[0] = [recommendman, 1, index]
+            frame[0] = [value, 1, index]
     
-    frame.sort(key=lambda x: (x[1], x[2]))
-
-
-anslist = []
+    
+    # print(frame)  
+ans = []
 for i in range(len(frame)):
-    if len(frame[i]) != 0:
-        ans = frame[i][0]
-        anslist.append(ans)
-anslist.sort()
-print(*anslist)
-
-
- 
+    ans.append(frame[i][0])
+ans.sort()
+print(*ans)

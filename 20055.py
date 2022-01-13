@@ -13,7 +13,7 @@ while True:
     robot.appendleft(robot.pop())
 
     # print(belt)
-    print(robot)
+    # print(robot)
     
     if robot[n - 1] == 1:
         robot[n - 1] = 0
