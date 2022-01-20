@@ -1,3 +1,4 @@
+from lib2to3.pgen2.token import RPAR
 import sys
 input = sys.stdin.readline
 
@@ -18,6 +19,8 @@ if k == 0:
 else:
     nx = (k - 1) // m
     ny = (k - 1) % m
+    print(nx)
+    print(ny)
 
     for i in range(nx + 1):
         for j in range(ny + 1):
@@ -37,6 +40,6 @@ else:
             else:
                 dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
 
-    print(dp[nx][ny] * dp[n - 1][m - 1]) 
+    # print(dp[nx][ny] * dp[n - 1][m - 1]) 
 
 
