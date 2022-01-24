@@ -22,20 +22,20 @@ def quad_tree(x, y, n):
         anslist.append(ans)
         return
     
-    # nx = x + (n//2)
-    # ny = y + (n//2)
-    # anslist.append('(')
-    # quad_tree(x, y, n//2)
-    # quad_tree(x, ny, n//2)
-    # quad_tree(nx, y, n//2)
-    # quad_tree(nx, ny, n//2)
-    # anslist.append(')')
-
+    nx = x + (n//2)
+    ny = y + (n//2)
     anslist.append('(')
-    for i in range(0, 2):
-        for j in range(0, 2):
-            quad_tree(x + i * n //2 , y + j * n//2, n//2)
+    quad_tree(x, y, n//2)
+    quad_tree(x, ny, n//2)
+    quad_tree(nx, y, n//2)
+    quad_tree(nx, ny, n//2)
     anslist.append(')')
+
+    # anslist.append('(')
+    # for i in range(0, 2):
+    #     for j in range(0, 2):
+    #         quad_tree(x + i * n//2 , y + j * n//2, n//2)
+    # anslist.append(')')
 
 quad_tree(0, 0, n)
 print(*anslist, sep='')
