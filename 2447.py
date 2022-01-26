@@ -7,7 +7,7 @@ n = int(input())
 def make_star(n):
     if n == 3:
         return ['***', '* *', '***']
-    board = []
+    
     make_board = make_star(n // 3)
     #이전 별모양
 
@@ -25,10 +25,3 @@ def make_star(n):
 
 ans = make_star(n)
 print('\n'.join(ans))
-    
-
-
-
-
-     
-            
