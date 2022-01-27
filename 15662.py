@@ -24,7 +24,6 @@ for i in range(k):
     for j in range(num - 1, t - 1):
         if tlist[j][r] != tlist[j + 1][l]:
             after += 1
-            dir = -dir
         else:
             break
     for j in range(num - 1, 0, -1):
