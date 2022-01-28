@@ -1,4 +1,3 @@
-from lib2to3.pgen2 import grammar
 import sys
 input = sys.stdin.readline
 from collections import deque
