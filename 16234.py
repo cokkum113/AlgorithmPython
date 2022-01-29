@@ -15,6 +15,7 @@ sumlist = []
 cnt = 0
 def bfs(x, y):
     que = deque()
+    global cnt
     que.append([x, y])
     visit[x][y] = True
     sumlist.append(graph[x][y])
