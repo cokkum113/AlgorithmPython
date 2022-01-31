@@ -1,44 +1,49 @@
 import sys
 input = sys.stdin.readline
+sys.setrecursionlimit(10000)
 
-n, b = map(int, input().split())
-a = []
-for i in range(n):
-    a.append(list(map(int, input().split())))
-a2 = a.copy()
+N, B = map(int, input().split())
+A = []
+for i in range(N):
+    A.append(list(map(int, input().split())))
 
-ans = []
-if b == 1:
-    for i in range(n):
-        r = []
-        for j in a[i]:
-            x = j % 1000
-            r.append(x)
-        ans.append(r)
-    for i in ans:
-        print(*i)
-    exit()
-new_matrix = [[-1] * n for _ in range(n)]
-N = n
-def matrix(x, y, N):
-    if n == 1:
-        return
-    nx = x + N // n
-    ny = y + N // n
+def make_matrix(A, matrix):
+    new_matrix = [[0] * N for _ in range(N)]
+    for i in range(N):
+        for j in range(N):
+            tmp  = 0
+            for k in range(N):
+                tmp += matrix[i][k] * A[k][j]
+            new_matrix[i][j] = tmp % 1000
+    return new_matrix
+# make_matrix(A, A)
+# print(new_matrix)
+# a, b랑 곱해서 나온 새로운 new_matrix
 
-    matrix(x, y, N//n)
-    matrix(x, ny, N // n)
-    matrix(nx, y, N // n)
-    matrix(nx, ny, N // n)
-    for i in range(n):
-        for j in range(n):
-            for k in range(n):
-                new_matrix[k] += a[i] * a2[j]
-tmp = 0
-for i in range(n):
-        for j in range(n):
-            tmp = 0
-            for k in range(n):
-                tmp += a[i][k] * a2[k][j]
-            new_matrix[i][j] = tmp
-print(new_matrix)    
+#이제 이걸 b만큼 하면되는 분할 정복하기
+def recursion(A, B):
+    if B == 1:
+        for i in range(N):
+            for j in range(N):
+                A[i][j] = A[i][j] % 1000
+        return A
+    
+    #짝수, 제곱수로 계속 곱해주고
+    elif B % 2 == 0:
+        n = B // 2
+        new_matrix2 = recursion(A, n)
+        return make_matrix(new_matrix2, new_matrix2)
+        
+    #홀수, A를 마지막에 곱해주고
+    elif B % 2 == 1:
+        n = B - 1
+        new_matrix2 = recursion(A, n)
+        return make_matrix(A, new_matrix2)
+        
+res = recursion(A, B)
+
+for i in range(N):
+    for j in range(N):
+        res[i][j] = res[i][j]
+for i in res:
+    print(*i, sep= ' ')
