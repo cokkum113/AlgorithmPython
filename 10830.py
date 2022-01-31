@@ -41,10 +41,4 @@ for i in range(n):
             for k in range(n):
                 tmp += a[i][k] * a2[k][j]
             new_matrix[i][j] = tmp
-print(new_matrix)
-
-
-    
-    
-    
-    
+print(new_matrix)    
