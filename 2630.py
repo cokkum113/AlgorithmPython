@@ -1,4 +1,3 @@
-import re
 import sys
 input = sys.stdin.readline
 
@@ -29,10 +28,12 @@ def recursion(x, y, n):
     nx = x + (n//2)
     ny = y + (n//2)
 
-    recursion(x, y, n//2)
     recursion(x, ny, n//2)
-    recursion(nx, y, n//2)
+    recursion(x, y, n//2)
+    
+    
     recursion(nx, ny, n//2)
+    recursion(nx, y, n//2)
 
 recursion(0, 0, n)
 for i in anslist:
