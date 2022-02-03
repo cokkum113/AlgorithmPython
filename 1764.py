@@ -8,22 +8,19 @@ l2 = []
 
 for i in range(n):
     l1.append(input().rstrip())
+
 for i in range(m):
     l2.append(input().rstrip())
 
 
-ans = []
-cnt = 0
-for i in l1:
-    if i in l2:
-        cnt +=1
-        ans.append(i)
+l1 = set(l1)
+l2 = set(l2)
+ans = set()
 
-ans.sort()
-print(cnt)
+ans = l1 & l2
+
+ans = sorted(ans)
+print(len(ans))
 for i in ans:
     print(i)
-
-    
-
 
