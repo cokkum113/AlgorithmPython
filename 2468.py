@@ -50,9 +50,3 @@ for k in range(deepmax):
     if cnt > ans:
         ans = cnt
 print(ans)
-
-
-
-
-
-
