@@ -27,6 +27,7 @@ for _ in range(t):
             for j in range(n + 2):
                 graph[i][j] = min(graph[i][k] + graph[k][j], graph[i][j])
     
+    #[home][fes]
     if graph[0][n + 1] >= INF:
         print("sad")
     else:
