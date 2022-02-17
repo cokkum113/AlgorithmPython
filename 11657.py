@@ -5,29 +5,27 @@ n, m = map(int, input().split())
 
 INF = int(1e9)
 graph = [INF] * (n + 1)
-
-arr = [[] for _ in range(n + 1)]
-graph[1] = 0 #시작점
+edge = []
 
 for _ in range(m):
     a,b,c = map(int, input().split())
-    arr[a].append([b, c])
+    edge.append([a,b,c])
 
+graph[1] = 0
+for i in range(n): #0 ~ n-1번
+    for j in range(m):
+        start = edge[j][0]
+        end = edge[j][1]
+        cost = edge[j][2]
 
-flag = True
-for re in range(n):
-    for i in range(1, n + 1):
-        for B, C in arr[i]:
-            if graph[i] != INF and graph[B] > graph[i] + C:
-                graph[B] = graph[i] + C
-                if re == n - 1:
-                    flag = False
+        if graph[start] != INF and graph[end] > graph[start] + cost:
+            graph[end] = graph[start] + cost
+            if i == n-1:
+                print(-1)
+                exit()
 
-if flag:
-    for i in graph[2:]:
-        if i == INF:
-            print(-1)
-        else:
-            print(i)
-else:
-    print(-1)
+for i in range(2, n + 1):
+    if graph[i] == INF:
+        print(-1)
+    else:
+        print(graph[i])
