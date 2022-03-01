@@ -19,7 +19,6 @@ def bfs(sp, dp):
         if status[0] * 2 <= dp :
             que.append([status[0] * 2, status[1] + 1])
    
-        
         if int(str(status[0]) + '1') <= dp:
             que.append([int(str(status[0]) + '1'), status[1] + 1])
           
