@@ -1,6 +1,12 @@
+
 import sys
 input = sys.stdin.readline
 from collections import deque
+
+'''
+다시 풀어보기!!!!!!!!1
+'''
+
 
 n, m = map(int, input().split())
 
@@ -27,52 +33,70 @@ def bfs(sp):
         if status[0] == 100:
             ans = min(ans, status[1])
             return ans
+
+        # for i in range(1, 7):
+        #     np = status[0] + i
+
+        #     if np > 100:
+        #         continue
+        #     if visit[np] == True:
+        #         continue
+        #     visit[np] = True
+
+        #     if bridge[np] != 0:
+        #         np = bridge[np]
+            
+        #     que.append([np, status[1] + 1])
         
         if 0 <= status[0] + 1 <= 100 and visit[status[0] + 1] == False:
             visit[status[0] + 1] = True
             que.append([status[0] + 1, status[1] + 1])
         
-        if  0 <= status[0] + 1 <= 100 and bridge[status[0] + 1] != 0:
-            que.append([bridge[status[0] + 1], status[1] + 1]) 
-            visit[bridge[status[0] + 1]] = True
-        
         if 0 <= status[0] + 2 <= 100 and visit[status[0] + 2] == False:
             visit[status[0] + 2] = True
             que.append([status[0] + 2, status[1] + 1])
 
-        if 0 <= status[0] + 2 <= 100 and bridge[status[0] + 2] != 0:
-            que.append([bridge[status[0] + 2], status[1] + 1]) 
-            visit[bridge[status[0] + 2]] = True
-        
         if 0 <= status[0] + 3 <= 100 and visit[status[0] + 3] == False:
             visit[status[0] + 3] = True
             que.append([status[0] + 3, status[1] + 1])
-
-        if  0 <= status[0] + 3 <= 100 and bridge[status[0] + 3] != 0:
-            que.append([bridge[status[0] + 3], status[1] + 1]) 
-            visit[bridge[status[0] + 3]] = True
 
         if 0 <= status[0] + 4 <= 100 and visit[status[0] + 4] == False:
             visit[status[0] + 4] = True
             que.append([status[0] + 4, status[1] + 1])
         
-        if 0 <= status[0] + 4 <= 100 and bridge[status[0] + 4] != 0:
-            que.append([bridge[status[0] + 4], status[1] + 1]) 
-            visit[bridge[status[0] + 4]] = True
-        
         if 0 <= status[0] + 5 <= 100 and visit[status[0] + 5] == False:
             visit[status[0] + 5] = True
             que.append([status[0] + 5, status[1] + 1])
-
-        if 0 <= status[0] + 5 <= 100 and bridge[status[0] + 5] != 0:
-            que.append([bridge[status[0] + 5], status[1] + 1]) 
-            visit[bridge[status[0] + 5]] = True
         
         if 0 <= status[0] + 6 <= 100 and visit[status[0] + 6] == False:
             visit[status[0] + 6] = True
             que.append([status[0] + 6, status[1] + 1])
 
+
+        if  0 <= status[0] + 1 <= 100 and bridge[status[0] + 1] != 0:
+            que.append([bridge[status[0] + 1], status[1] + 1]) 
+            visit[bridge[status[0] + 1]] = True    
+        
+        if 0 <= status[0] + 2 <= 100 and bridge[status[0] + 2] != 0:
+            que.append([bridge[status[0] + 2], status[1] + 1]) 
+            visit[bridge[status[0] + 2]] = True
+        
+        if  0 <= status[0] + 3 <= 100 and bridge[status[0] + 3] != 0:
+            que.append([bridge[status[0] + 3], status[1] + 1]) 
+            visit[bridge[status[0] + 3]] = True
+        
+        if 0 <= status[0] + 4 <= 100 and bridge[status[0] + 4] != 0:
+            que.append([bridge[status[0] + 4], status[1] + 1]) 
+            visit[bridge[status[0] + 4]] = True
+        
+        if 0 <= status[0] + 5 <= 100 and bridge[status[0] + 5] != 0:
+            que.append([bridge[status[0] + 5], status[1] + 1]) 
+            visit[bridge[status[0] + 5]] = True
+        
         if 0 <= status[0] + 6 <= 100 and bridge[status[0] + 6] != 0:
             que.append([bridge[status[0] + 6], status[1] + 1]) 
             visit[bridge[status[0] + 6]] = True
+
+        
+
 print(bfs(1))
