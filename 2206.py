@@ -1,3 +1,5 @@
+from os import stat
+import queue
 import sys
 input = sys.stdin.readline
 from collections import deque
@@ -5,60 +7,49 @@ from collections import deque
 n, m = map(int, input().split())
 
 graph = [[] for _ in range(n)]
+visited = [[[0] * m for _  in range(n)]for _ in range(2)]
 
 for i in range(n):
     s = input().rstrip()
     for j in s:
         graph[i].append(int(j))
 
-
 dx = [0, 0, 1, -1]
 dy = [1, -1, 0, 0]
-
-
-
-
-#0 : 갈 수 있는 길 
-#1 : 벽이기 때문에 못감, one_cnt == 0 이면 갈수 있음
-#2 : 벽을 부수지않은 상태에서 왔던길
-#3 : 벽을 부순 상태에서 왔던길
+ans = -1
 
 def bfs(x, y):
+    global ans
     one_cnt = 0
     que = deque()
-    que.append([x, y, one_cnt])
-
-    graph[0][0] = 2
-    cnt = -1
+    que.append([one_cnt, x, y, 1])
+    visited[0][0][0] = 1
 
     while que:
-        cnt += 1
-        for _ in range(len(que)):
-            status = que.popleft()
-            if status[0] == n -1 and status[1] == m - 1:
-                return cnt + 1
-            
-            for i in range(4):
-                nx = dx[i] + status[0]
-                ny = dy[i] + status[1]
-                if (0 <= nx < n and 0 <= ny < m):
-                    if status[2] == 0:
-                        if graph[nx][ny] == 0:
-                            graph[nx][ny] = 2
-                            que.append([nx, ny, status[2]])
-                            #status[2] 는 one_cnt
-                        elif graph[nx][ny] == 1:
-                            que.append([nx, ny, 1])
-                        
-                        elif graph[nx][ny] == 3:
-                            que.append([nx, ny, status[2]])
-                            graph[nx][ny] = 2
-                    elif status[2] == 1:
-                        #one_cnt = 1 일때
-                        if graph[nx][ny] == 0:
-                            graph[nx][ny] = 3
-                            que.append([nx, ny, status[2]])
-    return -1
+        status = que.popleft()
+        if status[1] == n - 1 and status[2] == m - 1:
+            ans = status[3] 
+            break
+        for i in range(4):
+            nx = status[1] + dx[i]
+            ny = status[2] + dy[i]
+            if (0<=nx<n and 0<=ny<m):
+
+                if graph[nx][ny] == 0 and visited[status[0]][nx][ny] == 0:
+                    visited[status[0]][nx][ny] = 1
+                    que.append([status[0], nx, ny, status[3] + 1])
+                
+                elif graph[nx][ny] == 1:
+                    if status[0] == 0 and visited[0][nx][ny] == 0:
+                        visited[1][nx][ny] = 1 
+                        que.append([status[0] + 1, nx, ny, status[3] + 1])
+       
+        
+    return ans
+
+if n == 1 and m == 1:
+    print(1)
+else:
+    print(bfs(0, 0))
     
 
-print(bfs(0, 0))
