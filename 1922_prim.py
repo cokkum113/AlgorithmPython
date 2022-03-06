@@ -11,7 +11,8 @@ for i in range(m):
     edge[a].append([c, b])
     edge[b].append([c, a])
 
-start = 3
+start = 1
+#start = 3
 #아무데나 임의의 수를 설정
 pq = []
 for e in edge[start]:
