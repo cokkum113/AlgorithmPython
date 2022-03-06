@@ -29,5 +29,7 @@ while len(tree) < v - 1:
         union(e[0], e[1])
         tree.append(e)
 
+
+
 print(sum(list(zip(*tree))[2]))
 
