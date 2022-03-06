@@ -75,9 +75,3 @@ while True:
         break
 
 print(ans)   
-
-    
-
-
-
-
